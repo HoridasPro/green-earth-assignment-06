@@ -13,7 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="./styless/style.css" />
   </head>
-  <body>
+  <body class="bg-[#F0FDF4]">
     <!-- Header section start here -->
     <header class="bg-[#15803D]">
       <div class="navbar max-w-[1250px] border-2 border-red-500 flex mx-auto">
@@ -28,11 +28,130 @@
           </ul>
         </div>
         <div class="navbar-end">
-          <a class="bg-[#FACC15] px-4 py-2 rounded-[50px] text-[#15803D] text-[15px]">Plant a Tree</a>
+          <a
+            class="bg-[#FACC15] px-4 py-2 rounded-[50px] text-[#15803D] text-[15px]"
+            >Plant a Tree</a
+          >
         </div>
       </div>
     </header>
-    <!-- Banner section start here -->
-     
+    <main>
+      <!-- Banner section start here -->
+      <section class="bg-[#CFF0DC]">
+        <div class="flex max-w[1250px] mx-auto justify-between items-center">
+          <figure><img src="./assets/hero-leaf1.png" alt="" /></figure>
+          <div class="text-center">
+            <h1 class="font-bold text-[35px] text-[#1F2937]">
+              Plant a Tree, Grow a Future
+            </h1>
+            <p class="font-normal text-[#1F2937]">
+              Join our mission to plant 1 million trees and make the Earth
+              greener for future generations.
+            </p>
+            <button
+              class="bg-[#FACC15] px-4 py-2 rounded-[50px] text-[#15803D] text-[15px] my-3"
+            >
+              Get Involved
+            </button>
+          </div>
+          <figure><img src="./assets/hero-leaf2.png" alt="" /></figure>
+        </div>
+      </section>
+
+      <!-- Card section start here -->
+      <section class="grid grid-cols-12 max-w-[1250px] mx-auto gap-2">
+        <!-- left sidebar -->
+        <div
+          id="level_container"
+          class="grid col-span-2 border-2 border-red-500"
+        >
+          <ul>
+            <h3 class="font-bold text-[15px]">Category</h3>
+            <div class="font-normal text-[15px] text-[#1F2937]">
+              <li class="my-1">All Trees</li>
+              <li class="my-1">Fruit Trees</li>
+              <li class="my-1">Flowering Trees</li>
+              <li class="my-1">Shade Trees</li>
+              <li class="my-1">Medicinal Trees</li>
+              <li class="my-1">Timber Trees</li>
+              <li class="my-1">Evergreen Trees</li>
+              <li class="my-1">Omamental Plants</li>
+              <li class="my-1">Bamboo</li>
+              <li class="my-1">Climbers</li>
+              <li class="my-1">Aquatic Plants</li>
+            </div>
+          </ul>
+          `;
+        </div>
+
+        <!-- Content -->
+        <div
+          id="word_container"
+          class="grid col-span-8 grid-cols-3 border-2 border-red-500"
+        ></div>
+
+        <!-- Right side start here -->
+        <div class="grid col-span-2 border-2 border-red-500">
+          <h1>Card section</h1>
+          <div>
+            <h2>horidas</h2>
+          </div>
+        </div>
+      </section>
+
+      <!-- about companion -->
+      <section class="max-w-[850px] mt-3 mx-auto border-2 border-red-500">
+        <h2 class="text-center font-bold text-[25px]">About the Campaign</h2>
+        <div class="flex justify-between items-center mt-4">
+          <figure>
+            <img class="w-[350px]" src="./assets/about.png" alt="" />
+          </figure>
+          <div class="font-normal text-[15px] text-[#1F2937]">
+            <p>
+              Green Earth is a global tree plantation initiative dedicated to
+              fighting <br />
+              climate change. Since our start, we’ve planted over 500,000 trees
+              <br />
+              worldwide. By joining our campaign, you help restore forests,
+              create <br />
+              habitats for wildlife, and combat global warming.
+            </p>
+            <ul class="list-disc pl-6 mt-5">
+              <li>Restoration of natural habitats</li>
+              <li>Improvement of air quality</li>
+              <li>Support for local communities</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Out Impact -->
+      <section class="mb-5 bg-[#CFF0DC]">
+        <div class="max-w-[1250px] mx-auto py-10">
+          <h2 class="text-center font-semibold text-[25px]">Out Impact</h2>
+          <div class="flex justify-between items-center mt-5">
+            <div
+              class="w-[400px] h-[100px] bg-white flex justify-center items-center rounded-xl"
+            >
+              <span>500K+</span>
+              <p>Trees Planted</p>
+            </div>
+            <div
+              class="w-[400px] h-[100px] bg-white text-center flex justify-center items-center rounded-xl"
+            >
+              <h2>120+</h2>
+              <p>Communities Involved</p>
+            </div>
+            <div
+              class="w-[400px] h-[100px] bg-white text-center flex justify-center items-center rounded-xl"
+            >
+              <h2>30+</h2>
+              <p>Countries Reached</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="./script.js"></script>
   </body>
 </html>
