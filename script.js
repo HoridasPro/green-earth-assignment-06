@@ -1,18 +1,22 @@
 // For the cart design
 const cardSection = async () => {
+  loadSpinner(true);
   const url = `https://openapi.programming-hero.com/api/plants`;
   const res = await fetch(url);
   const data = await res.json();
   displayCategory(data.plants);
+  loadSpinner(false);
 };
 
 // cart details
 
 const cartDetails = async (id) => {
+  loadSpinner(true);
   const url4 = `https://openapi.programming-hero.com/api/plant/${id}`;
   const res4 = await fetch(url4);
   const data4 = await res4.json();
   displayCartDetails(data4.plants);
+  loadSpinner(false);
 };
 const displayCartDetails = (cart) => {
   const modalId = document.getElementById("modal_details");
@@ -27,8 +31,20 @@ const displayCartDetails = (cart) => {
   document.getElementById("my_modal_1").showModal();
 };
 
+// For spinner
+const loadSpinner = (status) => {
+  if (status === true) {
+    document.getElementById("spinner").classList.remove("hidden");
+    document.getElementById("category_container").classList.add("hidden");
+  } else {
+    document.getElementById("category_container").classList.remove("hidden");
+    document.getElementById("spinner").classList.add("hidden");
+  }
+};
 // Product load
 const productLoad = async (id) => {
+  loadSpinner(true);
+
   const url2 = `https://openapi.programming-hero.com/api/category/${id}`;
   const res2 = await fetch(url2);
   const data2 = await res2.json();
@@ -71,6 +87,7 @@ const displayCategory = (carts) => {
           </div>`;
     categoryContainer.appendChild(createDiv);
   }
+  loadSpinner(false);
 };
 cardSection();
 
