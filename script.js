@@ -11,17 +11,23 @@ const productLoad = async (id) => {
   const url2 = `https://openapi.programming-hero.com/api/category/${id}`;
   const res2 = await fetch(url2);
   const data2 = await res2.json();
-  // removeActive();
-  // const clickButton = document.getElementById(`navBtn-${id}`);
-  // if (clickButton) {
-  //   clickButton.classList.add(
-  //     "bg-green-500",
-  //     "w-36",
-  //     "md:w-full",
-  //     "text-white"
-  //   );
-  // }
+  removeActive();
+  const clickButton = document.getElementById(`navBtn-${id}`);
+  if (clickButton) {
+    clickButton.classList.add(
+      "bg-[#15803D]",
+      "w-36",
+      "md:w-full",
+      "text-white"
+    );
+  }
   displayCategory(data2.plants);
+};
+const removeActive = () => {
+  const allBtns = document.querySelectorAll(".catagore_btn");
+  allBtns.forEach((btn) => {
+    btn.classList.remove("bg-[#15803D]", "text-white");
+  });
 };
 
 const displayCategory = (carts) => {
@@ -31,7 +37,7 @@ const displayCategory = (carts) => {
     // create div
     const createDiv = document.createElement("div");
     createDiv.innerHTML = `<div class="p-3 bg-white shadow-5xl rounded-xl">
-           <figure><img class="w-[250px] h-[250px] rounded-xl" src="${cart.image}" alt="" /></figure>
+           <figure><img class="w-[300px] h-[200px] rounded-xl" src="${cart.image}" alt="" /></figure>
             <h3 class="font-bold text-[#1F2937] text-[20px] mt-2">${cart.name}</h3>
             <p class="text-[#1F2937] text-[14px] font-normal text-justify mt-2">
               ${cart.description}
@@ -57,12 +63,71 @@ const sideMenu = async () => {
 const displayMenu = (datas) => {
   const menuContainer = document.getElementById("menu_container");
   menuContainer.innerHTML = "";
+
+  // create h1
+  const createHi = document.createElement("h1");
+  createHi.innerText = "Categories";
+  createHi.classList.add(
+    "text-xl",
+    "font-bold",
+    "mb-2",
+    "text-black-500",
+    "ml-4"
+  );
+  menuContainer.appendChild(createHi);
+
+  // create li
+  const li = document.createElement("li");
+  li.innerText = "All Trees";
+  li.classList.add(
+    "text-lg",
+    "mb-1",
+    "hover:bg-[#15803D]",
+    "py-1",
+    "pl-4",
+    "rounded-xl",
+    "text-black",
+    // "hover:bg-[#15803D]",
+    "cursor-pointer"
+  );
+
+  //   const removeActive = () => {
+  //   const removeBtn = document.querySelectorAll("#menuContainer li");
+  //   removeBtn.forEach((btn) => {
+  //     btn.classList.remove("bg-[#15803D]", "text-white");
+  //   });
+  // };
+
+  li.addEventListener("click", async function () {
+    const url3 = `https://openapi.programming-hero.com/api/plants`;
+    const res3 = await fetch(url3);
+    const data3 = await res3.json();
+    removeActive();
+    li.classList.add("bg-[#15803D]", "mb-1", "text-white");
+    displayCategory(data3.plants);
+  });
+  menuContainer.appendChild(li);
+  // For the
+  menuContainer.addEventListener("click", (e) => {
+    if (e.target.tagName === "LI" && e.target !== li) {
+      li.classList.remove("bg-[#15803D]", "text-white");
+    }
+  });
+
   datas.forEach((data) => {
-    console.log(data);
+    // console.log(data);
     const createLi = document.createElement("li");
     createLi.id = `navBtn-${data.id}`;
     createLi.innerText = ` ${data.category_name}`;
-    // createLi.classList.add("catagore-btn", "py-1.5", "pl-2", "rounded-sm");
+    createLi.classList.add(
+      "catagore_btn",
+      "py-1",
+      "pl-4",
+      "rounded-xl",
+      "text-black",
+      "hover:bg-[#15803D]",
+      "cursor-pointer"
+    );
     createLi.addEventListener("click", function () {
       productLoad(`${data.id}`);
     });
@@ -70,3 +135,12 @@ const displayMenu = (datas) => {
   });
 };
 sideMenu();
+// cart title
+
+document.getElementById("click", (e) => {
+  if (e.target.classList.contains("cartsBtn")) {
+    let cartTile = e.target.parentElement;
+    console.log(cartTile);
+  }
+});
+ 
