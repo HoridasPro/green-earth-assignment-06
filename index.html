@@ -67,13 +67,12 @@
       </section>
 
       <!-- Card section start here -->
-      <section class="grid grid-cols-12 max-w-[1250px] mx-auto gap-5">
+      <section
+        class="items-start grid grid-cols-12 max-w-[1250px] mx-auto gap-5"
+      >
         <!-- left sidebar -->
         <div class="grid col-span-2 border-2 border-red-500">
-          
-          <ul id="menu_container">
-            
-          </ul>
+          <ul id="menu_container"></ul>
         </div>
 
         <!-- Content -->
@@ -83,11 +82,11 @@
         ></div>
 
         <!-- Right side start here -->
-        <div class="grid col-span-2 border-2 border-red-500">
-          <h1>Card section</h1>
-          <div>
-            <h2>horidas</h2>
-          </div>
+        <div
+          id="cart_history"
+          class="grid col-span-2 border-2 border-red-500 bg-white px-4"
+        >
+          <h1 class="font-bold text-[25px]">Your Cart</h1>
         </div>
       </section>
 
@@ -183,6 +182,22 @@
         © 2025 Green Earth. All Rights Reserved.
       </p>
     </footer>
+        <button class="btn" onclick="my_modal_1.showModal()"></button>
+    <dialog id="my_modal_1" class="modal display-none">
+      <div class="modal-box">
+        <div id="modal_details" class="my-5">
+        </div>
+        <div class="modal-action">
+          <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button class="btn">Close</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- Open the modal using ID.showModal() method -->
+
     <script src="./script.js"></script>
   </body>
 </html>

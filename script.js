@@ -6,6 +6,27 @@ const cardSection = async () => {
   displayCategory(data.plants);
 };
 
+// cart details
+
+const cartDetails = async (id) => {
+  const url4 = `https://openapi.programming-hero.com/api/plant/${id}`;
+  const res4 = await fetch(url4);
+  const data4 = await res4.json();
+  displayCartDetails(data4.plants);
+};
+const displayCartDetails = (cart) => {
+  const modalId = document.getElementById("modal_details");
+  modalId.innerHTML = `
+  <h1 class="font-bold text-[25px]">${cart.name}</h1>
+          <img class="w-[300px] h-[200px] rounded-xl mt-3" src="${cart.image}" alt="" />
+          <p><span class="font-bold mr-1 mt-5">Category :</span>${cart.category}</p>
+          <p><span class="font-bold mr-1">Price :</span> ${cart.price}</p>
+          <p> 
+            <span class="font-bold mr-1">Description :</span> ${cart.description}
+          </p>`;
+  document.getElementById("my_modal_1").showModal();
+};
+
 // Product load
 const productLoad = async (id) => {
   const url2 = `https://openapi.programming-hero.com/api/category/${id}`;
@@ -38,15 +59,15 @@ const displayCategory = (carts) => {
     const createDiv = document.createElement("div");
     createDiv.innerHTML = `<div class="p-3 bg-white shadow-5xl rounded-xl">
            <figure><img class="w-[300px] h-[200px] rounded-xl" src="${cart.image}" alt="" /></figure>
-            <h3 class="font-bold text-[#1F2937] text-[20px] mt-2">${cart.name}</h3>
+            <h3 onclick=cartDetails(${cart.id}) class="font-bold text-[#1F2937] text-[20px] mt-2 cursor-pointer">${cart.name}</h3>
             <p class="text-[#1F2937] text-[14px] font-normal text-justify mt-2">
               ${cart.description}
             </p>
             <div class="flex justify-between mt-4">
               <button class="text-[#15803D] px-5 py-2 rounded-full font-semibold">${cart.category}</button>
-              <p class="text-[#1F2937] font-bold text-[20px]"><i class="fa-solid fa-bangladeshi-taka-sign"></i><span>500</span></p>
+              <p class="text-[#1F2937] font-bold text-[20px]"><i class="fa-solid fa-bangladeshi-taka-sign"></i><span>${cart.price}</span></p>
             </div>
-            <button class="bg-[#15803D] font-medium text-white py-2 w-full rounded-full">Add to Cart</button>
+            <button class="cartBtn bg-[#15803D] font-medium text-white py-2 w-full rounded-full cursor-pointer">Add to Cart</button>
           </div>`;
     categoryContainer.appendChild(createDiv);
   }
@@ -90,13 +111,6 @@ const displayMenu = (datas) => {
     // "hover:bg-[#15803D]",
     "cursor-pointer"
   );
-
-  //   const removeActive = () => {
-  //   const removeBtn = document.querySelectorAll("#menuContainer li");
-  //   removeBtn.forEach((btn) => {
-  //     btn.classList.remove("bg-[#15803D]", "text-white");
-  //   });
-  // };
 
   li.addEventListener("click", async function () {
     const url3 = `https://openapi.programming-hero.com/api/plants`;
@@ -143,4 +157,33 @@ document.getElementById("click", (e) => {
     console.log(cartTile);
   }
 });
- 
+
+// Remove card
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("cartBtn")) {
+    let cardTitle = e.target.parentElement.children[1].innerText;
+    console.log(cardTitle);
+    let cartPrice =
+      e.target.parentElement.children[3].children[1].children[1].innerText;
+    console.log(cartPrice);
+    const cartHistory = document.getElementById("cart_history");
+
+    const div = document.createElement("div");
+    div.innerHTML = `<div class="cartItem px-3 py-2 my-3 bg-[#F0FDF4] flex justify-between items-center rounded-lg">
+          <div>
+            <h6 class="text-sm">${cardTitle}</h6>
+           <p class="text-xs">${cartPrice}</p>
+          </div>
+           <button class="removeBtn text-xs text-gray-400"><i class="fa-solid fa-x cursor-pointer"></i></button>
+           
+         </div>
+         `;
+    cartHistory.appendChild(div);
+  }
+  if (
+    e.target.classList.contains("removeBtn") ||
+    e.target.classList.contains("fa-x")
+  ) {
+    e.target.closest(".cartItem").remove();
+  }
+});
