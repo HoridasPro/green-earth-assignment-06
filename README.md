@@ -2,7 +2,7 @@
 
 (ii)Let: Let is a block scope. We access just that block hoiting like var but not initialize. Not re-declare in the same scope but it will update.
 
-(ii)Const: Const is a block scope. It is hoiting but not initialize. Re-declare impossible and re-assignment impossible. If array or object then stay the same reference and the change the data.
+(iii)Const: Const is a block scope. It is hoiting but not initialize. Re-declare impossible and re-assignment impossible. If array or object then stay the same reference and the change the data.
 
 
   2.(i)forEach(): forEach drives the array element in the loop not the return. Generally site-effect(console.log, DOM, Update for use)
