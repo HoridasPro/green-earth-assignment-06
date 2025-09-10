@@ -200,7 +200,7 @@ document.addEventListener("click", (e) => {
       boxModel = document.createElement("p");
       boxModel.id = "total_price";
     }
-    boxModel.innerHTML = `Total:<span class="text-xs">${totalAmount}</span>`;
+    boxModel.innerHTML = `Total:<span class="text-xs ml-20">${totalAmount}</span>`;
     console.log(boxModel);
     cartHistory.appendChild(boxModel);
   }
