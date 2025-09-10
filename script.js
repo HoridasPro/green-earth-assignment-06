@@ -21,8 +21,8 @@ const displayCartDetails = (cart) => {
   const modalId = document.getElementById("modal_details");
   modalId.innerHTML = `
   <h1 class="font-bold text-[25px]">${cart.name}</h1>
-          <img class="w-[300px] h-[200px] rounded-xl mt-3" src="${cart.image}" alt="" />
-          <p><span class="font-bold mr-1 mt-5">Category :</span>${cart.category}</p>
+          <img class="w-full h-[280px] rounded-xl mt-3" src="${cart.image}" alt="" />
+          <p><span class="font-bold mr-1">Category :</span>${cart.category}</p>
           <p><span class="font-bold mr-1">Price :</span> ${cart.price}</p>
           <p> 
             <span class="font-bold mr-1">Description :</span> ${cart.description}
@@ -74,13 +74,13 @@ const displayCategory = (carts) => {
     // create div
     const createDiv = document.createElement("div");
     createDiv.innerHTML = `<div class="p-3 bg-white shadow-5xl rounded-xl">
-           <figure><img class="w-[300px] h-[200px] rounded-xl" src="${cart.image}" alt="" /></figure>
+           <figure><img class="w-full h-40 object-cover rounded-xl" src="${cart.image}" alt="" /></figure>
             <h3 onclick=cartDetails(${cart.id}) class="font-bold text-[#1F2937] text-[20px] mt-2 cursor-pointer">${cart.name}</h3>
-            <p class="text-[#1F2937] text-[14px] font-normal text-justify mt-2">
+            <p class="text-[#1F2937] text-[14px] font-normal text-justify mt-2 ">
               ${cart.description}
             </p>
             <div class="flex justify-between mt-4">
-              <button class="bg-[#D1F1DD] px-5 py-2 rounded-full font-semibold">${cart.category}</button>
+              <button class="bg-[#D1F1DD] px-4 py-1 rounded-full font-semibold">${cart.category}</button>
               <p class="text-[#1F2937] font-bold text-[20px]"><i class="fa-solid fa-bangladeshi-taka-sign"></i><span>${cart.price}</span></p>
             </div>
             <button class="cartBtn bg-[#15803D] font-medium text-white py-2 w-full rounded-full cursor-pointer my-4">Add to Cart</button>
@@ -110,7 +110,8 @@ const displayMenu = (datas) => {
     "font-bold",
     "mb-2",
     "text-black-500",
-    "ml-4"
+    "md:ml-4",
+    "ml-0"
   );
   menuContainer.appendChild(createHi);
 
@@ -180,16 +181,16 @@ document.addEventListener("click", (e) => {
     console.log(cardTitle);
     let cartPrice =
       e.target.parentElement.children[3].children[1].children[1].innerText;
-     alert(`${cardTitle} added to cart!`)
+    alert(`${cardTitle} added to cart!`);
 
     const cartHistory = document.getElementById("cart_history");
     const div = document.createElement("div");
     div.innerHTML = `<div class="cartItem px-3 py-2 my-3 bg-[#F0FDF4] flex justify-between items-center rounded-lg">
           <div>
-            <h6 class="text-sm">${cardTitle}</h6>
-           <p class="text-xs">${cartPrice}</p>
+            <h6 class="text-sm text-[18px] font-bold">${cardTitle}</h6>
+           <p class="text-xs font-normal text-[15px]"><i class="fa-solid fa-bangladeshi-taka-sign text-[13px]"></i> ${cartPrice}</p>
           </div>
-           <button class="removeBtn text-xs text-gray-400"><i class="fa-solid fa-x cursor-pointer"></i></button>
+           <button class="removeBtn text-xs text-gray-400"><i class="fa-solid fa-x cursor-pointer mr-5 text-red-500"></i></button>
           
          </div>
          `;
@@ -200,13 +201,13 @@ document.addEventListener("click", (e) => {
       boxModel = document.createElement("p");
       boxModel.id = "total_price";
     }
-    boxModel.innerHTML = `Total:<span class="text-xs ml-20">${totalAmount}</span>`;
+    boxModel.innerHTML = `<span class="font-bold text-[18px]">Total :</span><span class="text-xs ml-15 font-bold text-[16px]"><i class="fa-solid fa-bangladeshi-taka-sign text-[13px]"></i> ${totalAmount}</span>`;
     console.log(boxModel);
     cartHistory.appendChild(boxModel);
   }
   if (
-  e.target.classList.contains("removeBtn") ||
-  e.target.classList.contains("fa-x")
+    e.target.classList.contains("removeBtn") ||
+    e.target.classList.contains("fa-x")
   ) {
     const cartItem = e.target.closest(".cartItem");
     const price = cartItem.querySelector("p.text-xs").innerText;
@@ -214,7 +215,7 @@ document.addEventListener("click", (e) => {
     cartItem.remove();
     const boxModel = document.getElementById("total_price");
     if (boxModel) {
-      boxModel.innerHTML = `Total:<span class="text-xs">${totalAmount}</span>`;
+      boxModel.innerHTML = `<span class="font-bold">Total :</span><span class="text-xs ml-15 font-bold text-[16px]"><i class="fa-solid fa-bangladeshi-taka-sign text-[13px]"></i> ${totalAmount}</span>`;
     }
   }
 });

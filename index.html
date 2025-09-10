@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -28,7 +28,7 @@
     />
     <link rel="stylesheet" href="./styless/style.css" />
   </head>
-  <body class="bg-[#F0FDF4] body">
+  <body class="bg-[#F0FDF4] body overflow-x-hidden">
 
     <!-- Header section start here -->
     <header class="bg-[#15803D]">
@@ -82,36 +82,49 @@
           class="loading loading-dots loading-xl hidden"
         ></span>
       </section>
+        <button class="btn" onclick="my_modal_1.showModal()"></button>
+    <dialog id="my_modal_1" class="modal display-none">
+      <div class="modal-box">
+        <div id="modal_details" class="my-5"></div>
+        <div class="modal-action">
+          <form method="dialog">
+            <button class="btn">Close</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
 
       <!-- Card section start here -->
       <section
-        class="items-start grid md:grid-cols-12 grid-cols-1 md:max-w-[1250px] mx-auto gap-5"
+        class="items-start justify-center grid md:grid-cols-12 grid-cols-1 max-w-[1250px] mx-auto gap-5"
       >
         <!-- left sidebar -->
-        <div class="grid col-span-2">
-          <ul id="menu_container"></ul>
+        <div class="items-start grid col-span-2 mx-auto ml-10 md:ml-0 max-w-[550px] w-full h-full  ">
+          <ul id="menu_container" class="mx-auto  grid  grid-cols-3 md:grid-cols-1 ">
+           
+          </ul>
         </div>
 
         <!-- All carts -->
         <div
           id="category_container"
-          class="grid col-span-8 md:grid-cols-3 grid-cols-1 gap-5" 
+          class="grid col-span-8 md:grid-cols-3 grid-cols-1 gap-2" 
         ></div>
 
         <!-- Right side start here -->
         <div
           id="cart_history"
-          class="grid col-span-2 bg-white px-4"
+          class="grid col-span-2 w-[400px] md:w-[260px] mx-10 md:mx-0 bg-white px-4"
         >
           <h1 class="font-bold text-[25px]">Your Cart</h1>
           </div>
         </div>
       </section>
 
-      <!-- about companion -->
-      <section class="max-w-[850px] mt-3 mx-auto">
-        <h2 class="text-center font-bold text-[25px]">About the Campaign</h2>
-        <div class="flex justify-between items-center mt-4">
+      <!-- about campaign -->
+      <section class="max-w-[850px]  my-16 mx-auto mb-16">
+        <h2 class="text-center font-bold text-[25px] mb-10">About the Campaign</h2>
+        <div class="flex flex-col md:flex-row gap-5 p-12 md:p-0 justify-between items-center mt-4">
           <figure>
             <img class="w-[350px]" src="./assets/about.png" alt="" />
           </figure>
@@ -136,22 +149,22 @@
 
       <!-- Out Impact -->
       <section class="bg-[#CFF0DC]">
-        <div class="max-w-[1250px] mx-auto py-10">
+        <div class="max-w-[1250px] mx-auto py-16">
           <h2 class="text-center font-semibold text-[25px]">Out Impact</h2>
-          <div class="flex justify-between items-center mt-5">
-            <div class="w-[400px] h-[100px] bg-white text-center rounded-xl">
+          <div class="flex flex-col md:flex-row gap-10 justify-between items-center mt-5">
+            <div class="w-[400px] h-[100px] bg-white text-center rounded-xl hover:bg-green-300 cursor-pointer transform transition duration-300 hover:scale-110">
               <div class="mt-5">
                 <h2 class="text-[#15803D] font-bold text-[25px]">500K+</h2>
                 <p class="text-[15px] text-[#1F2937]">Trees Planted</p>
               </div>
             </div>
-            <div class="w-[400px] h-[100px] bg-white text-center rounded-xl">
+            <div class="w-[400px] h-[100px] bg-white text-center rounded-xl hover:bg-green-300 cursor-pointer  transform transition duration-300 hover:scale-110">
               <div class="mt-5">
                 <h2 class="text-[#15803D] font-bold text-[25px]">120+</h2>
                 <p class="text-[15px] text-[#1F2937]">Communities Involved</p>
               </div>
             </div>
-            <div class="w-[400px] h-[100px] bg-white text-center rounded-xl">
+            <div class="w-[400px] h-[100px] bg-white text-center rounded-xl hover:bg-green-300 cursor-pointer  transform transition duration-300 hover:scale-110">
               <div class="mt-5">
                 <h2 class="text-[#15803D] text-[25px] font-bold">30+</h2>
                 <p class="text-[#1F2937] text-[15px]">Countries Reached</p>
@@ -168,7 +181,7 @@
             Plant a Tree Today
           </h1>
           <div
-            class="grid row-span-1 max-w-[1250px] mx-auto w-[500px] bg-[#15803D] p-10 rounded-xl mt-5"
+            class="grid row-span-1 md:w-[530px] mx-auto w-[400px] bg-[#15803D] p-10 rounded-xl mt-5"
           >
             <input
               class="rounded-xl p-2 outline-none bg-white border-none"
@@ -180,11 +193,14 @@
               type="email"
               placeholder="Your Email Address"
             />
-            <input
-              class="mt-3 rounded-xl p-2 outline-none bg-white border-none placeholder-[#1F2937] font-semibold"
-              type="email"
-              placeholder="Number of Trees"
-            />
+            <fieldset class="fieldset font-normal mt-3 rounded-xl placeholder-[#1F2937] bg-white">
+              <select class=" p-2 w-[100%] rounded-xl focus:outline-none border-none">
+                <option>Number of trees</option>
+                <option>1 Tree - $5</option>
+                <option>5 Tree - $25</option>
+                <option>10 Tree - $50</option>
+               </select>
+            </fieldset>
             <button
               class="bg-[#FACC15] mt-3 p-2 rounded-full text-[#15803D] font-bold"
               type="button"
@@ -202,25 +218,6 @@
         © 2025 Green Earth. All Rights Reserved.
       </p>
     </footer>
-    <button class="btn" onclick="my_modal_1.showModal()"></button>
-    <dialog id="my_modal_1" class="modal display-none">
-      <div class="modal-box">
-        <div id="modal_details" class="my-5"></div>
-        <div class="modal-action">
-          <form method="dialog">
-            <button class="btn">Close</button>
-          </form>
-        </div>
-      </div>
-    </dialog>
     <script src="./script.js"></script>
   </body>
 </html>
-
-
-
-
-
-
-
-  
