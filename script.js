@@ -1,4 +1,4 @@
-// For the cart design
+// For the all cards
 const cardSection = async () => {
   loadSpinner(true);
   const url = `https://openapi.programming-hero.com/api/plants`;
@@ -9,13 +9,12 @@ const cardSection = async () => {
 };
 
 // cart details
-
 const cartDetails = async (id) => {
   loadSpinner(true);
-  const url4 = `https://openapi.programming-hero.com/api/plant/${id}`;
-  const res4 = await fetch(url4);
-  const data4 = await res4.json();
-  displayCartDetails(data4.plants);
+  const url = `https://openapi.programming-hero.com/api/plant/${id}`;
+  const res = await fetch(url);
+  const data = await res.json();
+  displayCartDetails(data.plants);
   loadSpinner(false);
 };
 const displayCartDetails = (cart) => {
@@ -41,6 +40,7 @@ const loadSpinner = (status) => {
     document.getElementById("spinner").classList.add("hidden");
   }
 };
+
 // Product load
 const productLoad = async (id) => {
   loadSpinner(true);
@@ -80,10 +80,10 @@ const displayCategory = (carts) => {
               ${cart.description}
             </p>
             <div class="flex justify-between mt-4">
-              <button class="text-[#15803D] px-5 py-2 rounded-full font-semibold">${cart.category}</button>
+              <button class="bg-[#D1F1DD] px-5 py-2 rounded-full font-semibold">${cart.category}</button>
               <p class="text-[#1F2937] font-bold text-[20px]"><i class="fa-solid fa-bangladeshi-taka-sign"></i><span>${cart.price}</span></p>
             </div>
-            <button class="cartBtn bg-[#15803D] font-medium text-white py-2 w-full rounded-full cursor-pointer">Add to Cart</button>
+            <button class="cartBtn bg-[#15803D] font-medium text-white py-2 w-full rounded-full cursor-pointer my-4">Add to Cart</button>
           </div>`;
     categoryContainer.appendChild(createDiv);
   }
@@ -125,7 +125,6 @@ const displayMenu = (datas) => {
     "pl-4",
     "rounded-xl",
     "text-black",
-    // "hover:bg-[#15803D]",
     "cursor-pointer"
   );
 
@@ -138,7 +137,7 @@ const displayMenu = (datas) => {
     displayCategory(data3.plants);
   });
   menuContainer.appendChild(li);
-  // For the
+
   menuContainer.addEventListener("click", (e) => {
     if (e.target.tagName === "LI" && e.target !== li) {
       li.classList.remove("bg-[#15803D]", "text-white");
@@ -146,7 +145,6 @@ const displayMenu = (datas) => {
   });
 
   datas.forEach((data) => {
-    // console.log(data);
     const createLi = document.createElement("li");
     createLi.id = `navBtn-${data.id}`;
     createLi.innerText = ` ${data.category_name}`;
@@ -166,7 +164,6 @@ const displayMenu = (datas) => {
   });
 };
 sideMenu();
-// cart title
 
 document.getElementById("click", (e) => {
   if (e.target.classList.contains("cartsBtn")) {
@@ -175,16 +172,17 @@ document.getElementById("click", (e) => {
   }
 });
 
-// Remove card
+// For the total amount
+let totalAmount = 0;
 document.addEventListener("click", (e) => {
   if (e.target.classList.contains("cartBtn")) {
     let cardTitle = e.target.parentElement.children[1].innerText;
     console.log(cardTitle);
     let cartPrice =
       e.target.parentElement.children[3].children[1].children[1].innerText;
-    console.log(cartPrice);
-    const cartHistory = document.getElementById("cart_history");
+     alert(`${cardTitle} added to cart!`)
 
+    const cartHistory = document.getElementById("cart_history");
     const div = document.createElement("div");
     div.innerHTML = `<div class="cartItem px-3 py-2 my-3 bg-[#F0FDF4] flex justify-between items-center rounded-lg">
           <div>
@@ -192,15 +190,31 @@ document.addEventListener("click", (e) => {
            <p class="text-xs">${cartPrice}</p>
           </div>
            <button class="removeBtn text-xs text-gray-400"><i class="fa-solid fa-x cursor-pointer"></i></button>
-           
+          
          </div>
          `;
     cartHistory.appendChild(div);
+    totalAmount += parseInt(cartPrice);
+    let boxModel = document.getElementById("total_price");
+    if (!boxModel) {
+      boxModel = document.createElement("p");
+      boxModel.id = "total_price";
+    }
+    boxModel.innerHTML = `Total:<span class="text-xs">${totalAmount}</span>`;
+    console.log(boxModel);
+    cartHistory.appendChild(boxModel);
   }
   if (
-    e.target.classList.contains("removeBtn") ||
-    e.target.classList.contains("fa-x")
+  e.target.classList.contains("removeBtn") ||
+  e.target.classList.contains("fa-x")
   ) {
-    e.target.closest(".cartItem").remove();
+    const cartItem = e.target.closest(".cartItem");
+    const price = cartItem.querySelector("p.text-xs").innerText;
+    totalAmount -= parseInt(price);
+    cartItem.remove();
+    const boxModel = document.getElementById("total_price");
+    if (boxModel) {
+      boxModel.innerHTML = `Total:<span class="text-xs">${totalAmount}</span>`;
+    }
   }
 });
