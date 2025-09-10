@@ -1,10 +1,14 @@
 1. (i)Var:Var is a function which we are declare in the function and can take to access array anywhere. It has hoisting which is up and it has default undefined. Re declare in the same scope.
+
 (ii)Let: Let is a block scope. We access just that block hoiting like var but not initialize. Not re-declare in the same scope but it will update.
+
 (ii)Const: Const is a block scope. It is hoiting but not initialize. Re-declare impossible and re-assignment impossible. If array or object then stay the same reference and the change the data.
 
 
   2.(i)forEach(): forEach drives the array element in the loop not the return. Generally site-effect(console.log, DOM, Update for use)
+  
   (ii)map():Map works on the every element and make new array.
+  
   (iii)filter(): Choose the element for condition stay the element for the new array.
   
 
